@@ -3,7 +3,7 @@ import cv2
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
 
-exetasknum=2
+exetasknum=1
 
 if exetasknum==1:
     #Capture Video from Camera
