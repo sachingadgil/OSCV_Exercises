@@ -1,12 +1,14 @@
 import cv2
 import numpy as np
 import random
+from PIL import Image
 import tkinter as tk
 from tkinter import simpledialog
 from datetime import datetime
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
 exetasknum=1
+bgcolor='Transparent'
 
 def imgnamedialogue():
     application_window = tk.Tk()
@@ -36,9 +38,19 @@ if exetasknum==1:
             #filename=input("enter image file name")
             filename = imgnamedialogue()
             #stamp=str(datetime.now())
-            filenamewithpath=os.getcwd()+"\\"+filename+".jpg"
+            filenamewithpath=os.getcwd()+"\\"+filename+".png"
             print(filenamewithpath)
             cv2.imwrite(filenamewithpath,img)
             break
     cv2.destroyAllWindows()
 
+if bgcolor=='Transparent':
+    img2 = Image.open(filenamewithpath)
+    img2 = img2.convert("RGBA")
+    pixdata = img2.load()
+    width, height = img2.size
+    for y in range(height):
+        for x in range(width):
+            if pixdata[x, y] == (255, 255, 255, 255):
+                pixdata[x, y] = (255, 255, 255, 0)
+    img2.save(filenamewithpath, "PNG")
