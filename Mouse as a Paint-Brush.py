@@ -35,7 +35,7 @@ if exetasknum==1:
         if cv2.waitKey(20) & 0xFF == 27:
             #filename=input("enter image file name")
             filename = imgnamedialogue()
-            stamp=str(datetime.now())
+            #stamp=str(datetime.now())
             filenamewithpath=os.getcwd()+"\\"+filename+".jpg"
             print(filenamewithpath)
             cv2.imwrite(filenamewithpath,img)
