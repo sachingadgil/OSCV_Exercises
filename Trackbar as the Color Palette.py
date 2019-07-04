@@ -62,8 +62,8 @@ if exetasknum==2:
             cv2.circle(img,(x,y),w,(b,g,r),-1)
         elif event == cv2.EVENT_MOUSEMOVE:
             if drawing == True:
-                a, b = x, y
-                if a!=x & b!=y:
+                p, q = x, y
+                if p!=x & q!=y:
                     cv2.circle(img,(x,y),w,(b,g,r),-1)
         elif event == cv2.EVENT_LBUTTONUP:
             drawing = False
