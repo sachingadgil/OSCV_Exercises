@@ -3,7 +3,7 @@ import cv2
 from matplotlib import pyplot as plt
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
-exetasknum = 7
+exetasknum = 4
 
 if exetasknum==1:
     #Simple Thresholding
@@ -113,13 +113,49 @@ if exetasknum==4:
         cap.set(3, 1280)
         cap.set(4, 720)
     make_720p()
+
+    idx = 0
+    bufflen = 4
+
     while(1):
         _, frame_i = cap.read()
         frame_s = cv2.cvtColor(frame_i, cv2.COLOR_BGR2GRAY)
         frame_s = cv2.medianBlur(frame_s,3)
         frame = cv2.adaptiveThreshold(frame_s,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-                    cv2.THRESH_BINARY,15,4)
-        cv2.imshow('not_Stabilized',frame)
+                    cv2.THRESH_BINARY,15,3)
+        if (idx>=bufflen):
+            #frame_b[pos] = frame.copy() # wanted to use a loop like this, but used hardcoding instead for lack of time
+            if pos==0:
+                 frame_b0 = frame.copy()
+                 frame_b0 = np.int32(frame_b0) # this conversion is required to get the summation / average right and not bound by uint8 size
+            elif pos==1:
+                 frame_b1 = frame.copy()
+                 frame_b1 = np.int32(frame_b1)
+            elif pos==2:
+                 frame_b2 = frame.copy()
+                 frame_b2 = np.int32(frame_b2)
+            elif pos==3:
+                 frame_b3 = frame.copy()
+                 frame_b3 = np.int32(frame_b3)
+
+            frame_t = (np.array(frame_b0) + np.array(frame_b1) + np.array(frame_b2) + np.array(frame_b3))/4
+            frame_f = np.uint8(frame_t)
+
+            #print("frame", frame_r.shape)
+            #print("frame_b0", frame_b0.shape)
+            #print("frame_b1", frame_b1.shape)
+            #print("frame_b2", frame_b2.shape)
+            #print("frame_t", frame_t.shape)
+            #print("frame_r", frame_r.shape)
+        else:
+            frame_b0 = frame_b1 = frame_b2 = frame_b3 = frame.copy()
+            frame_t = frame_r = frame_f = frame.copy()
+        
+        frame_a = cv2.medianBlur(frame,3)
+        frame_g = cv2.adaptiveThreshold(frame_a,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+                    cv2.THRESH_BINARY,15,3)
+
+        cv2.imshow('not_Stabilized',frame_g)
         k = cv2.waitKey(5) & 0xFF
         if k == 27:
             break
