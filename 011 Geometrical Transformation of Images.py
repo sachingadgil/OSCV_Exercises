@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import math
 #from matplotlib import pyplot as plt
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
@@ -51,9 +52,28 @@ if exetasknum==3:
 
     M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)
     dstby90 = cv2.warpAffine(img,M,(cols,rows))
-    cv2.imshow('img', img)
-    cv2.imshow('imgt',dstby90)
-    #cv2.imshow('imga',dstaddedsize)
+
+    scale = 1
+    x_rot = img.shape[1]
+    y_rot = img.shape[0]
+    theta = math.radians(30) #angle of rotation in radian
+    alpha = scale*math.cos(theta)
+    beta = scale*math.sin(theta)
+    #MathM = [[alpha, beta, (1-alpha)*x_rot-beta*y_rot][-1*beta, alpha, beta*x_rot +(1-alpha)*y_rot]]
+    MathM = [alpha, beta, (1-alpha)*x_rot-beta*y_rot, -1*beta, alpha, beta*x_rot +(1-alpha)*y_rot]
+    npM = np.asarray(MathM)
+    MathM = npM.reshape(M.shape)
+    #MathMT = [[alpha, -1*beta], [beta, alpha],[(1-alpha)*x_rot-beta*y_rot, beta*x_rot +(1-alpha)*y_rot]]
+    S = np.float32([[1,0,img.shape[1]],[0,1,img.shape[0]]])
+    shiftedimage = cv2.warpAffine(img,S,(cols+img.shape[1],rows+img.shape[0]))
+    dstbymath = cv2.warpAffine(shiftedimage, MathM, (3*cols, 3*rows))
+    #cv2.imshow('img', img)
+    #cv2.imshow('imgt',dstby90)
+    print(M)
+    print(MathM)
+    #print(MathM.shape)
+    cv2.imshow('shifted', shiftedimage)
+    cv2.imshow('imgm',dstbymath)
     while(1):
         if cv2.waitKey(20) & 0xFF == 27:
             break
