@@ -1,10 +1,10 @@
 import numpy as np
 import cv2
 import math
-#from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
-exetasknum = 3
+exetasknum = 5
 
 if exetasknum==1:
     #Scaling
@@ -78,3 +78,35 @@ if exetasknum==3:
         if cv2.waitKey(20) & 0xFF == 27:
             break
     cv2.destroyAllWindows()
+
+if exetasknum==4:
+    #Affine Transformation
+    img = cv2.imread('opencv-logo-white.png')
+    rows,cols,ch = img.shape
+
+    pts1 = np.float32([[50,50],[200,50],[50,200]])
+    pts2 = np.float32([[10,100],[200,50],[100,250]])
+
+    M = cv2.getAffineTransform(pts1,pts2) # These 2 points define rotation / scaling along the two axis
+
+    dst = cv2.warpAffine(img,M,(cols,rows))
+
+    plt.subplot(121),plt.imshow(img),plt.title('Input')
+    plt.subplot(122),plt.imshow(dst),plt.title('Output')
+    plt.show()
+
+if exetasknum==5:
+    #Perspective Transformation
+    img = cv2.imread('opencv-logo-white.png')
+    rows,cols,ch = img.shape
+
+    pts1 = np.float32([[5,5],[170,5],[5,165],[170,165]])
+    pts2 = np.float32([[0,0],[175,0],[0,170],[175,170]])
+    # these 2 points provide 2 scalings for x and y axis, rotation can be achieved as well
+    M = cv2.getPerspectiveTransform(pts1,pts2)
+
+    dst = cv2.warpPerspective(img,M,(175,170)) # This defines resultant image size
+
+    plt.subplot(121),plt.imshow(img),plt.title('Input')
+    plt.subplot(122),plt.imshow(dst),plt.title('Output')
+    plt.show()
