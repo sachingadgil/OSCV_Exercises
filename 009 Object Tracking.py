@@ -114,8 +114,8 @@ if exetasknum==2:
         # OpenCV uses  H: 0-179, S: 0-255, V: 0-255 (H is basically half the value of angle appearing on HSV colorwheel)
         #lower_color = np.array([1,30,5])   # for skin
         #upper_color = np.array([13,255,255]) # for skin
-        lower_color = np.array([40,30,5])
-        upper_color = np.array([80,255,255])
+        lower_color = np.array([1,10,175])
+        upper_color = np.array([179,65,255])
 
         # Threshold the HSV image to get only blue colors
         mask = cv2.inRange(hsv, lower_color, upper_color)
