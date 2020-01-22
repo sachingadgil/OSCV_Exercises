@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import os
 os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises')
-exetasknum = 7
+exetasknum = 3
 
 if exetasknum==1:
     img = cv2.imread('wiki.jpg',0)
