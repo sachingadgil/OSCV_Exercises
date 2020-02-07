@@ -55,4 +55,42 @@ if exetasknum==1:
 
     cv2.destroyAllWindows()
 
-# The exercises to calibration, undistortion, remapping and re-projection is skipped
+    # calibration
+    ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
+    np.savez('B.npz', ret, mtx, dist, rvecs, tvecs)
+    #undistortion
+    img = cv2.imread('camcapz01.jpg')
+    h, w = img.shape[:2]
+    newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
+
+    # undistort
+    dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
+
+    # crop the image
+    x,y,w,h = roi
+    dst = dst[y:y+h, x:x+w]
+    cv2.imwrite('calibresult.png',dst)
+    #remapping
+    # 2. Using remapping
+    # This is curved path. First find a mapping function from distorted image to undistorted image. Then use the remap function.
+
+    # # undistort
+    # mapx,mapy = cv2.initUndistortRectifyMap(mtx,dist,None,newcameramtx,(w,h),5)
+    # dst = cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR)
+
+    # # crop the image
+    # x,y,w,h = roi
+    # dst = dst[y:y+h, x:x+w]
+    # cv2.imwrite('calibresult.png',dst) 
+    #re-projection
+    mean_error = 0
+    tot_error = 0
+    for i in range(len(objpoints)):
+        imgpoints2, _ = cv2.projectPoints(objpoints[i], rvecs[i], tvecs[i], mtx, dist)
+        error = cv2.norm(imgpoints[i],imgpoints2, cv2.NORM_L2)/len(imgpoints2)
+        tot_error += error
+        
+    print("total error: ", mean_error/len(objpoints))
+    print("total error: ", tot_error)
+    #camera.release()
+    cv2.destroyAllWindows()

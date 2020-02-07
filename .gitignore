@@ -1,8 +1,4 @@
-output.avi
-B2DBy.jpg
-opencv-logo-white.png
-otsu.jpg
-Webcam.jpg
 *.avi
 *.jpg
 *.png
+*.data
