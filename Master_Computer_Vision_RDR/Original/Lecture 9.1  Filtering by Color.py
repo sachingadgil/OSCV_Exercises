@@ -27,7 +27,7 @@ while True:
 
 
     # Use inRange to capture only the values between lower & upper_blue
-    mask = cv2.inRange(hsv_img, lower_blue, upper_blue)
+    mask = cv2.inRange(hsv_img, lower_purple, upper_purple)
 
     # Perform Bitwise AND on mask and our original frame
     res = cv2.bitwise_and(frame, frame, mask=mask)

@@ -10,7 +10,7 @@ import cv2
 import numpy as np
 
 # Let's load a simple image with 3 black squares
-image = cv2.imread('images/shapes.jpg')
+image = cv2.imread('images/shapes_donut.jpg')
 cv2.imshow('Input Image', image)
 cv2.waitKey(0)
 
@@ -24,10 +24,11 @@ cv2.waitKey(0)
 
 # Finding Contours
 # Use a copy of your image e.g. edged.copy(), since findContours alters the image
-contours, hierarchy = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+contours, hierarchy = cv2.findContours(edged, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 cv2.imshow('Canny Edges After Contouring', edged)
 cv2.waitKey(0)
-
+print(hierarchy)
+print(contours)
 print("Number of Contours found = " + str(len(contours)))
 
 # Draw all contours

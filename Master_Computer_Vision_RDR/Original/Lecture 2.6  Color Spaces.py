@@ -25,8 +25,8 @@ image = cv2.imread('./images/input.jpg')
 
 # BGR Values for the first 0,0 pixel
 B, G, R = image[10, 50] 
-print B, G, R
-print image.shape
+print(B, G, R)
+print(image.shape)
 
 
 # Let's see what happens when we convert it to grayscale
@@ -35,8 +35,8 @@ print image.shape
 
 
 gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-print gray_img.shape
-print gray_img[10, 50] 
+print(gray_img.shape)
+print(gray_img[10, 50]) 
 
 
 # It's now only 2 dimensions. Each pixel coordinate has only one value (previously 3) with a range of 0 to 255
@@ -78,7 +78,7 @@ image = cv2.imread('./images/input.jpg')
 # OpenCV's 'split' function splites the image into each color index
 B, G, R = cv2.split(image)
 
-print B.shape
+print(B.shape)
 cv2.imshow("Red", R)
 cv2.imshow("Green", G)
 cv2.imshow("Blue", B)

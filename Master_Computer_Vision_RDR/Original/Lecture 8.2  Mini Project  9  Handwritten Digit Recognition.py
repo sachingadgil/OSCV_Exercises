@@ -10,9 +10,11 @@
 
 import numpy as np
 import cv2
+import os
+os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises\\Master_Computer_Vision_RDR\\Original')
 
 # Let's take a look at our digits dataset
-image = cv2.imread('images/digits.png')
+image = cv2.imread('../images/digits.png')
 gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 small = cv2.pyrDown(image)
 cv2.imshow('Digits Image', small)
@@ -38,7 +40,7 @@ train_labels = np.repeat(k,350)[:,np.newaxis]
 test_labels = np.repeat(k,150)[:,np.newaxis]
 
 # Initiate kNN, train the data, then test it with test data for k=3
-knn = cv2.KNearest()
+knn = cv2.m1.KNearest_create()
 knn.train(train, train_labels)
 ret, result, neighbors, distance = knn.find_nearest(test, k=3)
 

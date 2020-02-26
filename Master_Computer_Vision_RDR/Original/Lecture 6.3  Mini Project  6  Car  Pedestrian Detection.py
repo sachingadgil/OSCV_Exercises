@@ -30,7 +30,7 @@ import cv2
 import numpy as np
 
 # Create our body classifier
-body_classifier = cv2.CascadeClassifier('Haarcascades\haarcascade_fullbody.xml')
+body_classifier = cv2.CascadeClassifier('../Haarcascades\haarcascade_fullbody.xml')
 
 # Initiate video capture for video file
 cap = cv2.VideoCapture('images/walking.avi')
@@ -69,7 +69,7 @@ import time
 import numpy as np
 
 # Create our body classifier
-car_classifier = cv2.CascadeClassifier('Haarcascades\haarcascade_car.xml')
+car_classifier = cv2.CascadeClassifier('../Haarcascades\haarcascade_car.xml')
 
 # Initiate video capture for video file
 cap = cv2.VideoCapture('images/cars.avi')
@@ -78,13 +78,13 @@ cap = cv2.VideoCapture('images/cars.avi')
 # Loop once video is successfully loaded
 while cap.isOpened():
     
-    time.sleep(.05)
+    time.sleep(.02)
     # Read first frame
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
    
     # Pass frame to our car classifier
-    cars = car_classifier.detectMultiScale(gray, 1.4, 2)
+    cars = car_classifier.detectMultiScale(gray, 1.4, 1.2)
     
     # Extract bounding boxes for any bodies identified
     for (x,y,w,h) in cars:
@@ -101,3 +101,6 @@ cv2.destroyAllWindows()
 # - **Full Body / Pedestrian Classifier ** - https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_fullbody.xml
 # - **Car Classifier ** - http://www.codeforge.com/read/241845/cars3.xml__html
 # 
+
+
+# %%

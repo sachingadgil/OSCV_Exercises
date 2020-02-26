@@ -51,6 +51,8 @@ import cv2
 import dlib
 import numpy as np
 
+import os
+os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises\\Master_Computer_Vision_RDR\\Original')
 
 PREDICTOR_PATH = "shape_predictor_68_face_landmarks.dat"
 predictor = dlib.shape_predictor(PREDICTOR_PATH)
@@ -118,6 +120,12 @@ def mouth_open(image):
     #cv2.destroyAllWindows()
 
 cap = cv2.VideoCapture(0)
+
+def make_720p():
+    cap.set(3, 1280)
+    cap.set(4, 720)
+make_720p()
+
 yawns = 0
 yawn_status = False 
 
@@ -127,7 +135,7 @@ while True:
     
     prev_yawn_status = yawn_status  
     
-    if lip_distance > 25:
+    if lip_distance > 35:
         yawn_status = True 
         
         cv2.putText(frame, "Subject is Yawning", (50,450), 

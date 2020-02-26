@@ -53,6 +53,9 @@ import numpy
 from time import sleep
 import sys
 
+import os
+os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises\\Master_Computer_Vision_RDR\\Original')
+
 ## Our pretrained model that predicts the rectangles that correspond to the facial features of a face
 PREDICTOR_PATH = "shape_predictor_68_face_landmarks.dat"
 SCALE_FACTOR = 1 
@@ -81,7 +84,7 @@ OVERLAY_POINTS = [
 # Amount of blur to use during colour correction, as a fraction of the
 # pupillary distance.
 COLOUR_CORRECT_BLUR_FRAC = 0.6
-cascade_path='Haarcascades/haarcascade_frontalface_default.xml'
+cascade_path='../Haarcascades/haarcascade_frontalface_default.xml'
 cascade = cv2.CascadeClassifier(cascade_path)
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(PREDICTOR_PATH)
@@ -220,7 +223,7 @@ def face_swap(img,name):
     s = get_landmarks(img,True)
     
     if (s == "error"):
-        print "No or too many faces"
+        print("No or too many faces")
         return img
        
     im1, landmarks1 = img, s
@@ -252,12 +255,17 @@ def face_swap(img,name):
 
 cap = cv2.VideoCapture(0)
 
+cap = cv2.VideoCapture(0)
+def make_720p():
+    cap.set(3, 1280)
+    cap.set(4, 720)
+make_720p()
 
 # Name is the image we want to swap onto ours
 # dlibOn controls if use dlib's facial landmark detector (better) 
 # or use HAAR Cascade Classifiers (faster)
 
-filter_image =  "images/Trump.jpg" ### Put your image here!
+filter_image =  "images/asmi2.png" ### Put your image here!
 dlibOn = False
 
 while True:   

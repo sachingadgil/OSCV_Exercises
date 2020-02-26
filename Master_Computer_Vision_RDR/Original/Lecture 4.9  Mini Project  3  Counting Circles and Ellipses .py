@@ -15,7 +15,7 @@ cv2.imshow('Original Image',image)
 cv2.waitKey(0)
 
 # Intialize the detector using the default parameters
-detector = cv2.SimpleBlobDetector()
+detector = cv2.SimpleBlobDetector_create()
  
 # Detect blobs
 keypoints = detector.detect(image)
@@ -55,7 +55,7 @@ params.filterByInertia = True
 params.minInertiaRatio = 0.01
 
 # Create a detector with the parameters
-detector = cv2.SimpleBlobDetector(params)
+detector = cv2.SimpleBlobDetector_create(params)
     
 # Detect blobs
 keypoints = detector.detect(image)

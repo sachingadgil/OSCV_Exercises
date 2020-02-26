@@ -20,7 +20,7 @@ import cv2
 import numpy as np
 
 # Load the shape template or reference image
-template = cv2.imread('images/4star.jpg',0)
+template = cv2.imread('images/fourstar.jpg',0)
 cv2.imshow('Template', template)
 cv2.waitKey()
 
@@ -49,7 +49,7 @@ for c in contours:
     # Iterate through each contour in the target image and 
     # use cv2.matchShapes to compare contour shapes
     match = cv2.matchShapes(template_contour, c, 3, 0.0)
-    print match
+    print(match)
     # If the match value is less than 0.15 we
     if match < 0.15:
         closest_contour = c

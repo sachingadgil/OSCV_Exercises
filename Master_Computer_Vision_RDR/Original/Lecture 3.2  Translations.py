@@ -45,7 +45,7 @@ cv2.destroyAllWindows()
 
 # Let's take a look at T
 
-print T
+print(T)
 
 
 # In[ ]:

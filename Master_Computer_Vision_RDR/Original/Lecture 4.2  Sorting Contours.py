@@ -70,15 +70,15 @@ image = cv2.imread('images/bunchofshapes.jpg')
 orginal_image = image
 
 # Let's print the areas of the contours before sorting
-print "Contor Areas before sorting", 
-print get_contour_areas(contours)
+print("Contor Areas before sorting") 
+print(get_contour_areas(contours))
 
 # Sort contours large to small
 sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
 #sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)[:3]
 
-print "Contor Areas after sorting", 
-print get_contour_areas(sorted_contours)
+print("Contor Areas after sorting") 
+print(get_contour_areas(sorted_contours))
 
 # Iterate over our contours and draw one at a time
 for c in sorted_contours:
@@ -148,9 +148,14 @@ for (i,c)  in enumerate(contours_left_to_right):
     # Let's now crop each contour and save these images
     cropped_contour = orginal_image[y:y + h, x:x + w]
     image_name = "output_shape_number_" + str(i+1) + ".jpg"
-    print image_name
-    cv2.imwrite(image_name, cropped_contour)
+    print(image_name)
+    #cv2.imwrite(image_name, cropped_contour)
+    cv2.imshow(image_name, cropped_contour)
+    cv2.waitKey(0)
     
 cv2.destroyAllWindows()
 
 
+
+
+# %%

@@ -53,13 +53,16 @@ import numpy
 from time import sleep
 import sys
 
+import os
+os.chdir('C:\\Users\\sachi\\.vscode\\GitHubRepos\\OSCV_Exercises\\Master_Computer_Vision_RDR\\Original')
+
 PREDICTOR_PATH = "shape_predictor_68_face_landmarks.dat"
-SCALE_FACTOR = 1 
+SCALE_FACTOR = 3 
 FEATHER_AMOUNT = 11
 
 FACE_POINTS = list(range(17, 68))
 MOUTH_POINTS = list(range(48, 61))
-RIGHT_BROW_POINTS = list(range(17, 22))
+RIGHT_BROW_POINTS = list(range(17, 21))
 LEFT_BROW_POINTS = list(range(22, 27))
 RIGHT_EYE_POINTS = list(range(36, 42))
 LEFT_EYE_POINTS = list(range(42, 48))
@@ -229,8 +232,8 @@ def swappy(image1, image2):
    
 
 ## Enter the paths to your input images here    
-image1 = cv2.imread('images/Hillary.jpg')
-image2 = cv2.imread('images/Trump.jpg')
+image1 = cv2.imread('images/sach2.png')
+image2 = cv2.imread('images/asmi2.png')
 
 swapped = swappy(image1, image2)
 cv2.imshow('Face Swap 1', swapped)

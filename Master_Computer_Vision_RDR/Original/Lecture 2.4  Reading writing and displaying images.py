@@ -89,7 +89,7 @@ import numpy as np
 # In[15]:
 
 
-print input.shape
+print(input.shape)
 
 
 # #### Shape gives the dimensions of the image array
@@ -102,8 +102,8 @@ print input.shape
 
 # Let's print each dimension of the image
 
-print 'Height of Image:', int(input.shape[0]), 'pixels'
-print 'Width of Image: ', int(input.shape[1]), 'pixels'
+print('Height of Image:', int(input.shape[0]), 'pixels')
+print('Width of Image: ', int(input.shape[1]), 'pixels')
 
 
 # ### How do we save images we edit in OpenCV?

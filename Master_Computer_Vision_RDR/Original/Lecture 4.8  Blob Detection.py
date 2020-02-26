@@ -8,13 +8,14 @@
 
 # Standard imports
 import cv2
+from cv2 import Feature2D
 import numpy as np;
  
 # Read image
 image = cv2.imread("images/Sunflowers.jpg")
  
 # Set up the detector with default parameters.
-detector = cv2.SimpleBlobDetector()
+detector = cv2.SimpleBlobDetector_create()
  
 # Detect blobs.
 keypoints = detector.detect(image)

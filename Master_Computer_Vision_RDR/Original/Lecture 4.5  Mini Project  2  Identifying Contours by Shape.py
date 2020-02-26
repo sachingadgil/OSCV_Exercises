@@ -33,15 +33,21 @@ for cnt in contours:
         
         # Find contour center to place text at the center
         M = cv2.moments(cnt)
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
+        if M["m00"] != 0:
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+        else:
+            cx, cy =0, 0
         cv2.putText(image, shape_name, (cx-50, cy), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 1)
     
     elif len(approx) == 4:
         x,y,w,h = cv2.boundingRect(cnt)
         M = cv2.moments(cnt)
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
+        if M["m00"] != 0:
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+        else:
+            cx, cy =0, 0
         
         # Check to see if 4-side polygon is square or rectangle
         # cv2.boundingRect returns the top left and then width and 
@@ -57,16 +63,22 @@ for cnt in contours:
             # Find contour center to place text at the center
             cv2.drawContours(image, [cnt], 0, (0, 0, 255), -1)
             M = cv2.moments(cnt)
-            cx = int(M['m10'] / M['m00'])
-            cy = int(M['m01'] / M['m00'])
+            if M["m00"] != 0:
+                cx = int(M['m10'] / M['m00'])
+                cy = int(M['m01'] / M['m00'])
+            else:
+                cx, cy =0, 0
             cv2.putText(image, shape_name, (cx-50, cy), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 1)
             
     elif len(approx) == 10:
         shape_name = "Star"
         cv2.drawContours(image, [cnt], 0, (255, 255, 0), -1)
         M = cv2.moments(cnt)
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
+        if M["m00"] != 0:
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+        else:
+            cx, cy =0, 0
         cv2.putText(image, shape_name, (cx-50, cy), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 1)
         
         
@@ -75,12 +87,19 @@ for cnt in contours:
         shape_name = "Circle"
         cv2.drawContours(image, [cnt], 0, (0, 255, 255), -1)
         M = cv2.moments(cnt)
-        cx = int(M['m10'] / M['m00'])
-        cy = int(M['m01'] / M['m00'])
+        if M["m00"] != 0:
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+        else:
+            cx, cy =0, 0
         cv2.putText(image, shape_name, (cx-50, cy), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 1)
+        print(M)
 
     cv2.imshow('Identifying Shapes',image)
     cv2.waitKey(0)
     
 cv2.destroyAllWindows()
 
+
+
+# %%

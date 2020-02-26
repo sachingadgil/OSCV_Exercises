@@ -11,7 +11,7 @@ import cv2
 
 # We point OpenCV's CascadeClassifier function to where our 
 # classifier (XML file format) is stored
-face_classifier = cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
+face_classifier = cv2.CascadeClassifier('../Haarcascades/haarcascade_frontalface_default.xml')
 
 # Load our image then convert it to grayscale
 image = cv2.imread('images/Trump.jpg')
@@ -43,8 +43,8 @@ cv2.destroyAllWindows()
 import numpy as np
 import cv2
  
-face_classifier = cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
-eye_classifier = cv2.CascadeClassifier('Haarcascades/haarcascade_eye.xml')
+face_classifier = cv2.CascadeClassifier('../Haarcascades/haarcascade_frontalface_default.xml')
+eye_classifier = cv2.CascadeClassifier('../Haarcascades/haarcascade_eye.xml')
  
 img = cv2.imread('images/Trump.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -78,8 +78,8 @@ cv2.destroyAllWindows()
 import cv2
 import numpy as np
 
-face_classifier = cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
-eye_classifier = cv2.CascadeClassifier('Haarcascades/haarcascade_eye.xml')
+face_classifier = cv2.CascadeClassifier('../Haarcascades/haarcascade_frontalface_default.xml')
+eye_classifier = cv2.CascadeClassifier('../Haarcascades/haarcascade_eye.xml')
 
 def face_detector(img, size=0.5):
     # Convert image to grayscale
