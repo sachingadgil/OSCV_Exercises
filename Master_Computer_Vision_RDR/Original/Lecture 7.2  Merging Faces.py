@@ -233,7 +233,7 @@ def swappy(image1, image2):
 
 ## Enter the paths to your input images here    
 image1 = cv2.imread('images/sach2.png')
-image2 = cv2.imread('images/asmi2.png')
+image2 = cv2.imread('images/muk.png')
 
 swapped = swappy(image1, image2)
 cv2.imshow('Face Swap 1', swapped)
